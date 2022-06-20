@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        /* 1fr -> 1 fraction, 3fr -> 3 fractions */
+    }
+</style>
+
+
+<div class = "home-container">
+    <div>
+        {% include 'base/topics_component.html' %}
+    </div>
+    {% include 'base/feed_component.html' %}
+</div>
+
+{% endblock %}
