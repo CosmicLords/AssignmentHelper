@@ -92,8 +92,10 @@ def createNotification(request):
     if request.method == 'POST':
         form = NotificationForm(request.POST)
         if form.is_valid():
+            # form.save()
             notification = form.save(commit = False)
             notification.host = request.user
+            notification.save()
             return redirect('home')
     return render(request, 'base/notification_form.html', context)
 
