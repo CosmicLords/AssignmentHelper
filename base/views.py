@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 # Create your views here.
-from .models import Notification, Topic
+from .models import Notification, Topic, Notes
 from .forms import NotificationForm
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -33,9 +33,9 @@ def loginPage(request):
             messages.error(request, 'Wrong Username or Password')
 
     context = {}
-    return render(request, 'base/sign_up_login.html', context)
+    return render(request, 'base/login.html', context)
 
-def addUser(request):
+def signUp(request):
     form = UserCreationForm()
     context = {'form' : form}
     if request.method == 'POST':
@@ -53,11 +53,11 @@ def addUser(request):
         except:
             messages.error(request, 'Something Went Wrong')
 
-    return render(request, 'base/add_user.html' ,context)
+    return render(request, 'base/sign_up.html' ,context)
 
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 def home(request):
     q = request.GET.get('q')
@@ -141,3 +141,23 @@ def deleteNotification(request, pk):
         notification.delete()
         return redirect('home')
     return render(request, 'base/delete.html', context)
+
+
+def notesPage(request):
+    notes = Notes.objects.all()
+    number_notes = notes.count()
+    topics = Topic.objects.all()
+    context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes}
+    return render(request, 'base/notes.html', context)
+
+def makeNewCR(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        user = User.objects.get(id = id)
+        if not user is None:
+            user.is_superuser = True
+            return redirect('home')
+        else:
+            messages.error('Wrong User Id')
+
+    return render(request, 'base/new_cr_form.html')

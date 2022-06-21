@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% for note in notes %}
+<div>
+    <h3>{{note.title}}</h3>
+    <small>{{note.topic}}</small>
+    <br>
+    <a href="{note.link}}">Link - {{note.link}}</a>
+    <small>{{note.updated|timesince}}ago</small>
+</div>
+{% endfor %}
+{% endblock %}
