@@ -37,6 +37,8 @@ class Notes(models.Model):
     link = models.CharField(max_length = 400)
     updated = models.DateTimeField(auto_now = True)
     created = models.DateTimeField(auto_now_add = True)
+    class Meta:
+        ordering = ['-updated', '-created']
 
 
 class Comment(models.Model):

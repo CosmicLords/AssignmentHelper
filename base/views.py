@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 from .models import Notification, Topic, Notes
-from .forms import NotificationForm
+from .forms import NotificationForm, NotesForm
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -21,7 +21,7 @@ def loginPage(request):
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username').lower()
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
 
@@ -43,7 +43,6 @@ def signUp(request):
         try:
             if form.is_valid():
                 user = form.save(commit = False)
-                user.username = user.username.lower()
                 user.save()
                 login(request, user)
                 return redirect('home')
@@ -71,7 +70,7 @@ def home(request):
     )
     number_notifications = notifications.count()
     topics = Topic.objects.all()
-    context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications}
+    context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications, 'page' : 'home'}
     return render(request, 'base/home.html', context)
 
 def notification(request, pk):
@@ -102,7 +101,6 @@ def changePass(request, pk):
         'form': form
     })
 
-@login_required(login_url=  '/login')
 def createNotification(request):
     form = NotificationForm()
     context = {'form' : form}
@@ -116,7 +114,6 @@ def createNotification(request):
             return redirect('home')
     return render(request, 'base/notification_form.html', context)
 
-@login_required(login_url=  '/login')
 def updateNotification(request, pk):
     # pk -> primary key
     notification = Notification.objects.get(id = pk)
@@ -133,7 +130,6 @@ def updateNotification(request, pk):
     return render(request, 'base/notification_form.html', context)
 
 
-@login_required(login_url=  '/login')
 def deleteNotification(request, pk):
     notification = Notification.objects.get(id = pk)
     context = {'obj' : notification}
@@ -147,7 +143,7 @@ def notesPage(request):
     notes = Notes.objects.all()
     number_notes = notes.count()
     topics = Topic.objects.all()
-    context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes}
+    context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes, 'page' : 'notes'}
     return render(request, 'base/notes.html', context)
 
 def makeNewCR(request):
@@ -156,8 +152,23 @@ def makeNewCR(request):
         user = User.objects.get(id = id)
         if not user is None:
             user.is_superuser = True
+            user.is_staff = True
+            user.save()
             return redirect('home')
         else:
             messages.error('Wrong User Id')
 
     return render(request, 'base/new_cr_form.html')
+
+
+def addNotes(request):
+    form = NotesForm
+    context = {'form' : form, 'page' : 'notes'}
+    if request.method == 'POST':
+        form = NotesForm(request.POST)
+        if form.is_valid():
+            notes = form.save(commit = False)
+            notes.host = request.user
+            notes.save()
+        return redirect('notes')
+    return render(request, 'base/notes_form.html', context)

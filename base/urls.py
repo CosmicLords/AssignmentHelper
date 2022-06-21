@@ -13,5 +13,6 @@ urlpatterns = [
     path('create-notification/', views.createNotification, name = "create-notification"),
     path('update-notification/<str:pk>/', views.updateNotification, name = "update-notification"),
     path('delete-notification/<str:pk>/', views.deleteNotification, name = "delete-notification"),
-    path('create-new-cr/', views.makeNewCR, name = "make-new-cr")
+    path('create-new-cr/', views.makeNewCR, name = "make-new-cr"),
+    path('add-notes/', views.addNotes, name = "add-notes"),
 ]

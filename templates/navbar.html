@@ -15,17 +15,21 @@
     <a href="{% url 'notes' %}">Notes</a>
     <br>
     {% if request.user.is_superuser %}
+    {% if page == 'home' %}
     <a href="{% url 'create-notification' %}">Create Notificaton</a>
     <br>
-    <a href="/">Add Notes</a>
+    {% endif %}
+    {% if page == "notes" %}
+    <a href="{% url 'add-notes' %}">Add Notes</a>
     <br>
+    {% endif %}
     <a href="{% url 'make-new-cr' %}">Make new CR</a>
     {% endif %}
 </div>
 <div>
     <p>
-    <a href="{% url 'user-profile' user.id %}">{{user.username}}</a></p>
-    {{user.id}}
+    <a href="{% url 'user-profile' request.user.id %}">{{request.user.username}}</a></p>
+    {{request.user.id}}
     <p>
     <a href="{% url 'logout' %}" style="text-align: left;">Logout</a></p>
 </div>

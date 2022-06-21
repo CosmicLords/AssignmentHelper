@@ -10,8 +10,8 @@
 <a href="{% url 'delete-notification' notification.id %}">Delete</a>
 <br>
 {% endif %}
-                <a href="{% url 'user-profile' notification.host.id %}" class="user-name"> @{{ notification.host.username }}</a>
-                <h5>{{notification.id}} --  <a href= "{% url 'notification' notification.id %}" >{{notification.title}}</a></h5>
+                <h3><a href= "{% url 'notification' notification.id %}" >{{notification.title}}</a></h3>
+                <h5><a href="{% url 'user-profile' notification.host.id %}" class="user-name"> @{{ notification.host.username }}</a></h5>
                 <small> {{ notification.topic.name }} </small>
                 <br>
                 <small>{{notification.created|timesince}} ago</small>
