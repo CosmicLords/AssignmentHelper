@@ -1,13 +1,15 @@
-{% extends 'main.html' %}
+{% extends 'main_navless.html' %}
 {% block content %}
 
 <div>
-    <form method="POST">
+    <form method="POST" class = "login-form">
         {% csrf_token %}
         <label>Username</label>
         <input type="text" name ="username" placeholder="Enter Username">
         <label>Password</label>
         <input type="password" name = "password" placeholder="Enter Password">
+        <br>
+        <br>
         <input type="submit" value="Login">
     </form>
 </div>

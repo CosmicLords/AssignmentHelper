@@ -1,4 +1,4 @@
-<div>
+<div class="notifications">
     <h4>{{number_notifications}} notifications</h4>
     {% if request.user.is_authenticated %}
     <a href="{% url 'create-notification' %}">Create Notificaton</a>
@@ -11,7 +11,7 @@
 <a href="{% url 'delete-notification' notification.id %}">Delete</a>
 <br>
 {% endif %}
-                <a href="{% url 'user-profile' notification.host.id %}"> @{{ notification.host.username }}</a>
+                <a href="{% url 'user-profile' notification.host.id %}" class="host"> @{{ notification.host.username }}</a>
                 <h5>{{notification.id}} --  <a href= "{% url 'notification' notification.id %}" >{{notification.title}}</a></h5>
                 <small> {{ notification.topic.name }} </small>
                 <hr>

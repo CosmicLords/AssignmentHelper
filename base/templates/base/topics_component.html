@@ -1,12 +1,13 @@
 
-
+<div class="browse-sub">
 <h3>Browse Subjects</h3>
         <hr>
         <div>
-            <a href="{% url 'home' %}"> All </a>
+            <a href="{% url 'home' %}" ><h4> All</h4> </a>
         </div>
         {% for topic in topics %}
-        <div>
-            <a href="{% url 'home' %}?q={{topic.name}}"> {{topic.name}} </a>
+        <div >
+            <a href="{% url 'home' %}?q={{topic.name}}" ><h4> {{topic.name}} </h4></a>
         </div>
         {% endfor %}
+</div>

@@ -1,8 +1,8 @@
-
+<div class="navbar">
 <a href="/">
     <h1>WCE</h1>
 </a>
-<form action="{% url 'home' %}">
+<form action="{% url 'home' %}" class = "search-bar">
     <input type="text" name="q" placeholder="Search Notification........">
 </form>
 {% if request.user.is_authenticated %}
@@ -12,3 +12,4 @@
 <a href="{% url 'login' %}">Login</a>
 {% endif %}
 <hr>
+</div>

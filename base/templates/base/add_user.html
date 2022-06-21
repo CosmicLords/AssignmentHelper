@@ -1,6 +1,6 @@
-{% extends 'main.html' %}
+{% extends 'main_navless.html' %}
 {% block content %}
-<div>
+<div class="add-cr">
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
