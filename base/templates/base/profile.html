@@ -10,6 +10,9 @@
 <div class="profile-container">
     <div>
         <h1>{{user.username}}</h1>
+        {% if request.user == user %}
+        <a href="{% url 'change-password' user.id %}"><button name = "Change" class = "Change-Pass">Change Password</button></a>
+        {% endif %}
     </div>
     <div>
         {% include 'base/feed_component.html' %}

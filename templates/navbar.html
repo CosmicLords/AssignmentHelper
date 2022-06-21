@@ -1,4 +1,9 @@
+{% load static %}
 <div class="navbar">
+    <div>
+    <img src="{% static 'images\Img1.jpg' %}" class="navbar-img">
+</div>
+<div>
 <a href="/">
     <h1>WCE</h1>
 </a>
@@ -6,10 +11,11 @@
     <input type="text" name="q" placeholder="Search Notification........">
 </form>
 {% if request.user.is_authenticated %}
-<a href="{% url 'logout' %}">Logout</a>
+<a href="{% url 'logout' %}" style="text-align: left;">Logout</a>
 <a href="{% url 'add-user' %}">Add new CR</a>
 {% else %}
-<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'login' %}" style="text-align: left">Login</a>
 {% endif %}
 <hr>
+</div>
 </div>

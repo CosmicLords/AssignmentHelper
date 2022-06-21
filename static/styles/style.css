@@ -5,19 +5,14 @@
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    background-color: #080710;
-}
 ul{
     font-family: 'Poppins',sans-serif;
     letter-spacing: 0.5px;
-    color: #ffffff;
 }
 .background{
     width: 430px;
     height: 520px;
     position: absolute;
-    transform: translate(-50%,-50%);
     left: 50%;
     top: 50%;
 }
@@ -27,43 +22,47 @@ ul{
     position: absolute;
     border-radius: 50%;
 }
-.search-bar{
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
-}
 .navbar{
-    background-color: #23a2f6;
+    /* background: url('{{ STATIC_URL }}images/Img1.jpg'; */
+    color: white;
+    border: whitesmoke;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
-.browse-sub a{
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+.navbar-img{
+    border: solid white;
+    border-radius: 80px;
+}
+.navbar input{
+    border: solid black;
+    border-radius: 15px;
+    width: 300px;
+    background-color: palegreen;
+}
+.browse-sub{
+    border: solid black;
+    border-radius: 4px;
+    background-color: gray;
+    box-shadow: white;
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
-    outline: none;
-    border: none;
+}
+.feed{
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px white;
+    font-family: 'Poppins',sans-serif;
+    letter-spacing: 0.5px;
+}
+.feed-block{
+    border: solid black;
+    border-radius: 10px;
+    background-color: khaki;
 }
 .home-container{
     display: grid;
     grid-template-columns: 1fr 3fr;
     /* 1fr -> 1 fraction, 3fr -> 3 fractions */
-}
-.shape:first-child{
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
-    left: -80px;
-    top: -80px;
-}
-.shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
-    right: -30px;
-    bottom: -80px;
 }
 .login-form{
     height: 420px;
@@ -79,7 +78,6 @@ ul{
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -97,23 +95,35 @@ ul{
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
-.notifications.host{
+.create-not{
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
     font-family: 'Poppins',sans-serif;
-    color: blue;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.feed{
+    font-family: 'Poppins',sans-serif;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     letter-spacing: 0.5px;
 }
-.notifications a{
+a{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     font-weight: 900;
+    color: black;
 }
-.notifications h4{
+.feed h4{
     font-family: 'Poppins',sans-serif;
     color: #ff512f;
     font-weight: 500;
@@ -121,7 +131,7 @@ ul{
 }
 form *{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
+    color: black;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -151,38 +161,15 @@ input{
     font-weight: 300;
 }
 ::placeholder{
-    color: #e5e5e5;
+    color: black;
 }
-button{
-    margin-top: 50px;
-    width: 100%;
-    background-color: #ffffff;
-    color: #080710;
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
+.user-name{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 200;
+    font-size:10;
+    color: red;
 }
-.social{
-  margin-top: 30px;
-  display: flex;
-}
-.social div{
-  background: red;
-  width: 150px;
-  border-radius: 3px;
-  padding: 5px 10px 10px 5px;
-  background-color: rgba(255,255,255,0.27);
-  color: #eaf0fb;
-  text-align: center;
-}
-.social div:hover{
-  background-color: rgba(255,255,255,0.47);
-}
-.social .fb{
-  margin-left: 25px;
-}
-.social i{
-  margin-right: 4px;
+
+.notification-body{
+    text-transform: capitalize;
 }

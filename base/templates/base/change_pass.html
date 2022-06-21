@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div class="create-not">
-    <form method="POST" action="">
+<div>
+    <form method="POST" action="" class="change-pass">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Submit">

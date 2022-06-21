@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.home, name = "home"),
     path('notification/<str:pk>/', views.notification, name = "notification"),
     path('profile/<str:pk>/', views.userProfile, name = "user-profile"),
+    path('profile/<str:pk>/change-pass', views.changePass, name = "change-password"),
     path('create-notification/', views.createNotification, name = "create-notification"),
     path('update-notification/<str:pk>/', views.updateNotification, name = "update-notification"),
     path('delete-notification/<str:pk>/', views.deleteNotification, name = "delete-notification"),

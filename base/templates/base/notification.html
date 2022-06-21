@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="notification-body">
 {% if notification.host == request.user %}
 <a href="{% url 'update-notification' notification.id %}">Update</a>
 <a href="{% url 'delete-notification' notification.id %}">Delete</a>
@@ -9,5 +10,5 @@
 <h5>
     {{ notification.description }}
 </h5> 
-
+</div>
 {% endblock %}
