@@ -5,9 +5,12 @@
         {% csrf_token %}
         {{form1.as_p}}
         {{form2.as_p}}
-        <button type="submit">Sign Up</button>
+        <div class="btns">
+            <button type="submit">Sign Up</button>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
     </form>
-    <a href="{% url 'login' %}">Login</a>
+    
 </div>
 
 
