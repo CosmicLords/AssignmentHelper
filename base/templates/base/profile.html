@@ -16,8 +16,8 @@
         <small><b>About Me -- </b></small>
         <p style="font-size: 15px;">{{profile.description}}</p>
         {% if request.user == user %}
-        <a href="{% url 'change-password' user.id %}"><button name = "Change" class = "Change-Pass">Change Password</button></a>
-        <a href="{% url 'make-new-cr' %}">Make new CR</a>
+            <a href="{% url 'change-password' user.id %}"><button name = "Change" class = "Change-Pass">Change Password</button></a>
+            <a href="{% url 'make-new-cr' %}" class="make-new-cr"><button class="make-new-cr">Make new CR</button></a>
         {% endif %}
     </div>
     <div>

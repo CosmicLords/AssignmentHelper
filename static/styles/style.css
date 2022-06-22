@@ -395,10 +395,37 @@ input{
 .profile-container small{
     padding: 5px;
 }
-
-
+.profile-container button{
+    margin-top: 25px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: aqua;
+    background-color: var(--home-bgc);
+    padding: 10px 25px;
+    box-shadow: 0px 2px 6px black;
+    border-radius: 1000px;
+    font-size: 15px;
+    border: 0px solid black;
+    cursor: pointer;
+}
+.profile-container button:hover{
+    color: orange;
+}
 /* =================================  NOTIFICATIN FORM  ======================= */
 /* .create-notification */
+.create-notification{
+    margin: 0px 0 0 5vw;
+}
+
+
+.create-notification button{
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: var(--home-bgc);
+    border-radius: 100px;
+    color: aqua;
+    box-shadow: 1px 4px 6px black;
+}
 .create-notification form input, textarea{
     text-align: center;
     color: white;
