@@ -12,10 +12,12 @@
         <h1>{{profile.name}}</h1>
         <h3>{{user.username}}</h3>
         <p style="font-size: 12px;">PRN - {{profile.PRN}}</p>
+        <p style="font-size: 12px;">ID - {{user.id}}</p>
         <small><b>About Me -- </b></small>
-        <p>{{profile.description}}</p>
+        <p style="font-size: 15px;">{{profile.description}}</p>
         {% if request.user == user %}
         <a href="{% url 'change-password' user.id %}"><button name = "Change" class = "Change-Pass">Change Password</button></a>
+        <a href="{% url 'make-new-cr' %}">Make new CR</a>
         {% endif %}
     </div>
     <div>

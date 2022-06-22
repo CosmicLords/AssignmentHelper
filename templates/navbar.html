@@ -1,48 +1,55 @@
-{% load static %}
-<div class="navbar">
-    <div>
-    <img src="{% static 'images\Img1.jpg' %}" class="navbar-img">
+<div class="nav-bar">
+    <div class="upper-nav">
+        <div class="clg-name-nav">
+            <a href="/">
+                <h1>WCE</h1>
+            </a>
+            
+            </div>
+            <div class="search-nav">
+                <form action="{% url 'home' %}" class = "search-bar">
+                    <input type="text" name="q" placeholder="Search Notification........">
+                </form>
+            </div>
+            <div class="right-nav">
+                
+                {% if page == 'home' %}
+                <p>
+                    <a href="{% url 'make-new-cr' %}">Make new CR</a>
+                </p>
+                {% endif %}
+                <p>
+                    <a href="{% url 'user-profile' request.user.id %}">{{request.user.username}}</a>
+                </p>
+                    <!-- <small style="color: black;">Id - {{request.user.id}}</small> -->
+                <p>
+                    <a href="{% url 'user-profile' request.user.id %}"><h1>{{user_profile.name}}</h1></a>
+                </p>
+                <p>
+                    <a href="{% url 'user-profile' request.user.id %}"><small>PRN - {{user_profile.PRN}}</small></a>
+                </p>
+                    <small>Id - {{request.user.id}}</small>
+                <p class="logout">
+                    <a href="{% url 'logout' %}" style="text-align: left;" >Logout</a>
+                </p>
+            </div>
+    </div>
+    <div class="lower-nav">
+        <div class="left-nav">
+            <p>
+                <a href="{% url 'notes' %}">Notes</a>
+            </p>
+                {% if request.user.is_superuser %}
+            <p>
+                <a href="{% url 'create-notification' %}">Create Notificaton</a>
+            </p>
+                {% endif %}
+                {% if page == "notes" %}
+            <p>
+                <a href="{% url 'add-notes' %}">Add Notes</a>
+            </p>
+                {% endif %}
+        </div>
+    </div>
 </div>
-<div>
-<a href="/">
-    <h1>WCE</h1>
-</a>
-<form action="{% url 'home' %}" class = "search-bar">
-    <input type="text" name="q" placeholder="Search Notification........">
-</form>
-</div>
-<div>
-    <p>
-    <a href="{% url 'notes' %}">Notes</a>
-    </p>
-    {% if request.user.is_superuser %}
-    {% if page == 'home' %}
-    <p>
-    <a href="{% url 'create-notification' %}">Create Notificaton</a>
-    </p>
-    {% endif %}
-    {% if page == "notes" %}
-    <p>
-    <a href="{% url 'add-notes' %}">Add Notes</a>
-    </p>
-    {% endif %}
-    <p>
-    <a href="{% url 'make-new-cr' %}">Make new CR</a>
-    </p>
-    {% endif %}
-</div>
-<div>
-    <p>
-        <a href="{% url 'user-profile' request.user.id %}"><h1>{{user_profile.name}}</h1></a>
-    </p>
-    <p>
-    <a href="{% url 'user-profile' request.user.id %}">{{request.user.username}}</a></p>
-    <p>
-        <small>PRN - {{user_profile.PRN}}</small>
-    </p>
-    <small style="color: black;">Id - {{request.user.id}}</small>
-    <p>
-    <a href="{% url 'logout' %}" style="text-align: left;">Logout</a></p>
-</div>
-<hr>
 </div>

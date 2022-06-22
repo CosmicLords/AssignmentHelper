@@ -2,14 +2,15 @@
 
 {% block content %}
 {% for note in notes %}
-<div class="note">
-    <h3>{{note.title}}</h3>
-    <small>{{note.topic}}</small>
+<div class="notes">
+    <h3 class="notes-title">{{note.title}}</h3>
+    <small class="notes-topic">{{note.topic}}</small>
     <br>
-    <a href="{note.link}}">Link - {{note.link}}</a>
+    <a href="{note.link}}" class="notes-link">Link - {{note.link}}</a>
     <p>
-    <small>{{note.updated|timesince}}ago</small>
+    <small class="notes-update-time">{{note.updated|timesince}} ago</small>
     </p>
+    <hr>
 </div>
 {% endfor %}
 {% endblock %}

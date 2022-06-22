@@ -1,136 +1,102 @@
+:root{
+    --nav-hov: aqua;
+    --nav-bgc: #383838;
+    --left-sec-bgc: #232323;
+    --home-bgc: #1F1F1F;
+}
 *,
 *:before,
 *:after{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;;
 }
+body{
+    background-color: var(--home-bgc);
+    color: white;
+}
+/* =======================  NAV-BAR  ===================== */
+.nav-bar .upper-nav{
+    display: flex;
+    background-color: var(--home-bgc);
+    align-items: center;
+}
+.nav-bar .clg-name-nav{
+    padding-left: 50px;
+    padding-right: 7vw;
+}
+.nav-bar .clg-name-nav a{
+    text-decoration: none;
+    color: var(--nav-hov);
+    font-size: 50px;
+}
+
+.nav-bar .search-nav{
+    margin-right: 18vw;
+}
+::placeholder{
+    color: black;
+}
+.nav-bar .search-nav input{
+    background-color: #fff;
+    width: 250px;
+    height: 43px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.nav-bar .right-nav{
+    display: flex;
+}
+.nav-bar .right-nav a{
+    text-decoration: none;
+    color: white;
+    margin: 0px 2vw;
+    font-size: 25px;
+}
+.nav-bar .right-nav a:hover{
+    color: var(--nav-hov);
+    transition-timing-function: ease-in;
+    transition-duration: .5s;
+}
+.nav-bar .right-nav .logout a:hover{
+    color: red;
+    transition-timing-function: ease-in;
+    transition-duration: 0.5s;
+}
+ /*----- LOWER-NAVBAR -----*/
+.nav-bar .lower-nav{
+    background-color: var(--nav-bgc);
+
+}
+.nav-bar .lower-nav .left-nav{
+    display: flex;
+    margin-left: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.nav-bar .lower-nav a{
+    text-decoration: none;
+    margin-right: 30px;
+    color: white;
+}
+.nav-bar .lower-nav a:hover{
+    color: var(--nav-hov);
+    transition-timing-function: ease-in;
+    transition-duration: 1s;
+}
+
+/* -------   NAV BAR ENDED HERE   ------------- */
+
+
+
+
+
 ul{
     font-family: 'Poppins',sans-serif;
     letter-spacing: 0.5px;
-}
-.background{
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-}
-.background .shape{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-.navbar{
-    /* background: url('{{ STATIC_URL }}images/Img1.jpg'; */
-    border-radius: 15px;
-    display: grid;
-    grid-template-columns: 3fr 3fr 2fr 1fr; 
-}
-.navbar-img{
-    border: solid white;
-    border-radius: 80px;
-}
-.navbar input{
-    border: solid black;
-    border-radius: 15px;
-    width: 300px;
-    background-color: palegreen;
-}
-.browse-sub{
-    border: solid black;
-    border-radius: 4px;
-    background-color: gray;
-    box-shadow: white;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-}
-.feed{
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px white;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-}
-.feed-block{
-    border: solid black;
-    border-radius: 10px;
-    background-color: khaki;
-}
-.home-container{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    /* 1fr -> 1 fraction, 3fr -> 3 fractions */
-}
-.login-form{
-    height: 420px;
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-.add-cr{
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 100%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-.add-cr input{
-    border: solid gray;
-    border-radius: 30px;
-}
-.sign-up{
-    margin-top: 10%;
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 100%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-
-.create-not{
-    background-color: rgba(255,255,255,0.13);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
 }
 .feed{
     font-family: 'Poppins',sans-serif;
@@ -141,13 +107,13 @@ ul{
 a{
     font-family: 'Poppins',sans-serif;
     letter-spacing: 0.5px;
-    font-weight: 900;
+    /* font-weight: 900; */
     color: black;
 }
 .feed h4{
     font-family: 'Poppins',sans-serif;
     color: #ff512f;
-    font-weight: 500;
+    /* font-weight: 500; */
     letter-spacing: 0.5px;
 }
 form *{
@@ -159,7 +125,7 @@ form *{
 }
 form h3{
     font-size: 32px;
-    font-weight: 500;
+    /* font-weight: 500; */
     line-height: 42px;
     text-align: center;
 }
@@ -168,7 +134,7 @@ label{
     display: block;
     margin-top: 30px;
     font-size: 16px;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 input{
     display: block;
@@ -179,14 +145,14 @@ input{
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
-    font-weight: 300;
+    /* font: 300; */
 }
 ::placeholder{
     color: black;
 }
 .user-name{
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 200;
+    /* font: 200; */
     font-size:10;
     color: red;
 }
@@ -195,101 +161,243 @@ input{
     text-transform: capitalize;
 }
 
-.note{
-    border: solid black;
-    border-radius: 10px;
-    background-color: khaki;    
+
+
+
+
+
+/* ===============================  LEFT SECTION  ============================= */
+.browse-sub{
+    background-color: #232323;
+    width: 22vw;
+    height: 80vh;
 }
-
-.notes-form{
-    margin-top: 10rem;
-    width: 500px;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 70%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-    font-family: 'Poppins',sans-serif;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
+.browse-sub .left-sec-links{
+    margin-left: 5vw;
 }
-
-
-.notes-form input{
-    align-items: center;
-    display: block;
-    height: 50px;
-    width: 100%;
-    background-color: wheat;
-    border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 300;
-}
-
-input{
-    align-items: center;
-    display: block;
-    border: solid gray;
-    height: 50px;
-    width: 100%;
-    border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 300;
+.browse-sub .left-sec-links a h4{
+    margin: 5vh 0px;
 
 }
-
-textarea{
-    align-items: center;
-    display: block;
-    border: solid gray;
-    width: 100%;
-    border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 300;
-
+.browse-sub a{
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+}
+.browse-sub a:hover{
+    color: var(--nav-hov);
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
 }
 
-.notes-form button{
+
+
+/* ===============================  HOME CONTAINER  ================== */
+.home-container{
+    background-color: var(--home-bgc);
+    display: flex;
+}
+.feed{
+    width: 78vw;
+    color: white;
+    margin: 50px 5vw;
+}
+.feed h4{
+    font-size: 32px;
+    color: rgb(255, 153, 0);
+}
+.feed hr{
+    opacity: 25%;
+    margin-top: 30px;
+}
+.feed .feed-block{
+    color: white;
     margin-top: 50px;
-    width: 100%;
-    color: #ffffff;
-    background-color: green;
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 50px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+.feed .feed-block .notif-title a{
+    color: white;
+    text-decoration: none;
+
+
+}
+.feed .feed-block .notif-title a:hover{
+    color: rgb(255, 208, 122);
+    transition-duration: 0.5s;
+}
+.feed .feed-block .notif-topic{
+    padding-left: 10px;
+
+}
+.feed .feed-block .host-time{
+    display: flex;
+    margin-bottom: 20px;
+}
+.feed .feed-block .notif-host a{
+    color: white;
+    text-decoration: none;
+}
+.feed .feed-block .notif-date{
+    opacity: 50%;
+    padding-left: 10px;
+}
+
+
+
+/* ============================   NOTES ========================= */
+.notes{
+    margin: 25px 50px;
+}
+.notes .notes-title{
+    color: white;
+    margin-bottom: 15px;
+}
+.notes .notes-topic{
+    color: white;
+    margin-bottom: 12px;
+}
+.notes a{
+    text-decoration: none;
+    margin-bottom: 12px;
+}
+.notes a:hover{
+    transition-duration: .5s;
+    color: aqua;
+    text-decoration: underline;
+}
+.notes .notes-link{
+    color: white;
+}
+.notes .notes-update-time{
+    color: white;
+    opacity: 50%;
+    padding-left: 10px;
+
+}
+.notes hr{
+    margin-top: 25px;
+    opacity: 25%;
+}
+
+
+
+
+/* =================================  MAKE NEW CR  ======================= */
+.new_CR{
+    margin: 200px 35vw;
+    text-align: center;
+}
+.new_CR input{
+    text-align: center;
+    color: white;
+}
+.new_CR .username{
+    color: white;
+    margin-bottom: 25px;
+}
+.new_CR .id{
+    color: white;
+    margin-bottom: 25px;
+
+}
+.new_CR .make_cr input{
+    margin-top: 40px;
+    color: white;
+}
+.new_CR .make_cr input:hover{
+    background-color: rgb(26, 26, 26);
+    transition-duration: .5s;
+    cursor: pointer;
+
+}
+
+
+/* =================================  LOGIN FORM   ============================ */
+.login-form{
+    background-color: rgb(23, 23, 23);
+    backdrop-filter: blur(20px);
+    margin: 180px 40vw;
+    text-align: center;
+    width: 30vw;
+    height: 58vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 1px 10px 20px black ;
+}
+.login-form form .username{
+    color: white;
+}
+.login-form form .password{
+    color:white;
+
+}
+.login-form form input{
+    text-align: center;
+    color: white;
+    width: 22vw;
+    border-radius: 1000px;
+    margin-left: 4vw;
+    box-shadow: inset -1px -4px 10px black;
+}
+.login-form form .submit{
+    color: white;
+    margin: 50px 4vw;
     cursor: pointer;
 }
 
-button{
-    margin-top: 50px;
-    width: 100%;
-    color: #ffffff;
-    background-color: gray;
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
+::placeholder{
+    color: rgb(113, 113, 113);
+}
+.login-form  a{
+    color: white;
+    text-decoration: none;
+
 }
 
-/* .home-container{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+
+/* =================================  PROFILE  ======================= */
+.profile-container{
+    display: flex;
+    text-decoration: none;
+    color: white;
+    margin: 0px 2vw;
+    font-size: 20px;
+    align-items: center;
+    letter-spacing: normal;
+    padding: 30px;
 }
-.navbar{
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr;
-} */
+.profile-container h1{
+    padding: 30px;
+}
+.profile-container h3{
+    padding:10px;
+}
+.profile-container p{
+    padding: 10px;
+}
+.profile-container small{
+    padding: 5px;
+}
+
+
+/* =================================  NOTIFICATIN FORM  ======================= */
+/* .create-notification */
+.create-notification form input, textarea{
+    text-align: center;
+    color: white;
+    width: 22vw;
+    border-radius: 10px;
+    margin-left: 4vw;
+    box-shadow: inset -1px -4px 10px black;
+}
+.create-notification label {
+    color: aliceblue;
+}
+
+.create-notification select {
+    border-radius: 10px;
+    width: 22vw;
+    padding: 5px;
+}
