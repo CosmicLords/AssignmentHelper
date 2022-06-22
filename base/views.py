@@ -5,8 +5,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 # Create your views here.
-from .models import Notification, Topic
-from .forms import NotificationForm
+from .models import Notification, Topic, Notes
+from .forms import NotificationForm, NotesForm
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -21,7 +21,7 @@ def loginPage(request):
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username').lower()
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
 
@@ -33,9 +33,9 @@ def loginPage(request):
             messages.error(request, 'Wrong Username or Password')
 
     context = {}
-    return render(request, 'base/sign_up_login.html', context)
+    return render(request, 'base/login.html', context)
 
-def addUser(request):
+def signUp(request):
     form = UserCreationForm()
     context = {'form' : form}
     if request.method == 'POST':
@@ -43,7 +43,6 @@ def addUser(request):
         try:
             if form.is_valid():
                 user = form.save(commit = False)
-                user.username = user.username.lower()
                 user.save()
                 login(request, user)
                 return redirect('home')
@@ -53,11 +52,11 @@ def addUser(request):
         except:
             messages.error(request, 'Something Went Wrong')
 
-    return render(request, 'base/add_user.html' ,context)
+    return render(request, 'base/sign_up.html' ,context)
 
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 def home(request):
     q = request.GET.get('q')
@@ -71,7 +70,7 @@ def home(request):
     )
     number_notifications = notifications.count()
     topics = Topic.objects.all()
-    context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications}
+    context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications, 'page' : 'home'}
     return render(request, 'base/home.html', context)
 
 def notification(request, pk):
@@ -102,7 +101,6 @@ def changePass(request, pk):
         'form': form
     })
 
-@login_required(login_url=  '/login')
 def createNotification(request):
     form = NotificationForm()
     context = {'form' : form}
@@ -116,7 +114,6 @@ def createNotification(request):
             return redirect('home')
     return render(request, 'base/notification_form.html', context)
 
-@login_required(login_url=  '/login')
 def updateNotification(request, pk):
     # pk -> primary key
     notification = Notification.objects.get(id = pk)
@@ -133,7 +130,6 @@ def updateNotification(request, pk):
     return render(request, 'base/notification_form.html', context)
 
 
-@login_required(login_url=  '/login')
 def deleteNotification(request, pk):
     notification = Notification.objects.get(id = pk)
     context = {'obj' : notification}
@@ -141,3 +137,38 @@ def deleteNotification(request, pk):
         notification.delete()
         return redirect('home')
     return render(request, 'base/delete.html', context)
+
+
+def notesPage(request):
+    notes = Notes.objects.all()
+    number_notes = notes.count()
+    topics = Topic.objects.all()
+    context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes, 'page' : 'notes'}
+    return render(request, 'base/notes.html', context)
+
+def makeNewCR(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        user = User.objects.get(id = id)
+        if not user is None:
+            user.is_superuser = True
+            user.is_staff = True
+            user.save()
+            return redirect('home')
+        else:
+            messages.error('Wrong User Id')
+
+    return render(request, 'base/new_cr_form.html')
+
+
+def addNotes(request):
+    form = NotesForm
+    context = {'form' : form, 'page' : 'notes'}
+    if request.method == 'POST':
+        form = NotesForm(request.POST)
+        if form.is_valid():
+            notes = form.save(commit = False)
+            notes.host = request.user
+            notes.save()
+        return redirect('notes')
+    return render(request, 'base/notes_form.html', context)

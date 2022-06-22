@@ -10,12 +10,33 @@
 <form action="{% url 'home' %}" class = "search-bar">
     <input type="text" name="q" placeholder="Search Notification........">
 </form>
-{% if request.user.is_authenticated %}
-<a href="{% url 'logout' %}" style="text-align: left;">Logout</a>
-<a href="{% url 'add-user' %}">Add new CR</a>
-{% else %}
-<a href="{% url 'login' %}" style="text-align: left">Login</a>
-{% endif %}
-<hr>
 </div>
+<div>
+    <p>
+    <a href="{% url 'notes' %}">Notes</a>
+    </p>
+    {% if request.user.is_superuser %}
+    {% if page == 'home' %}
+    <p>
+    <a href="{% url 'create-notification' %}">Create Notificaton</a>
+    </p>
+    {% endif %}
+    {% if page == "notes" %}
+    <p>
+    <a href="{% url 'add-notes' %}">Add Notes</a>
+    </p>
+    {% endif %}
+    <p>
+    <a href="{% url 'make-new-cr' %}">Make new CR</a>
+    </p>
+    {% endif %}
+</div>
+<div>
+    <p>
+    <a href="{% url 'user-profile' request.user.id %}">{{request.user.username}}</a></p>
+    <small style="color: black;">Id - {{request.user.id}}</small>
+    <p>
+    <a href="{% url 'logout' %}" style="text-align: left;">Logout</a></p>
+</div>
+<hr>
 </div>

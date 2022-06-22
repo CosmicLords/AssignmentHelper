@@ -1,17 +1,22 @@
 {% extends 'main_navless.html' %}
 {% block content %}
 
-<div>
-    <form method="POST" class = "login-form">
+<div class = "login-form">
+    <form method="POST">
         {% csrf_token %}
+        <p>
         <label>Username</label>
         <input type="text" name ="username" placeholder="Enter Username">
+        </p>
+        <p>
         <label>Password</label>
         <input type="password" name = "password" placeholder="Enter Password">
-        <br>
-        <br>
+    </p>
+        <p>
         <input type="submit" value="Login">
+    </p>
     </form>
+    <a href="{% url 'sign-up' %}">Sign Up</a>
 </div>
 
 
