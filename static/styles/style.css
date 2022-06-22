@@ -40,7 +40,7 @@ body{
 }
 .nav-bar .search-nav input{
     background-color: #fff;
-    width: 250px;
+    width: 300px;
     height: 43px;
     border-radius: 50px;
     text-align: center;
@@ -48,6 +48,13 @@ body{
 
 .nav-bar .right-nav{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+.nav-bar .right-nav .drop-down .id{
+    margin-left: 39px;
+    margin-top: 4px;
 }
 .nav-bar .right-nav a{
     text-decoration: none;
@@ -175,6 +182,10 @@ input{
 .browse-sub .left-sec-links{
     margin-left: 5vw;
 }
+.browse-sub .left-sec-links h3{
+    margin-top: 20px;
+    font-size: 28px;
+}
 .browse-sub .left-sec-links a h4{
     margin: 5vh 0px;
 
@@ -182,7 +193,8 @@ input{
 .browse-sub a{
     text-decoration: none;
     color: white;
-    font-size: 28px;
+    font-size: 25px;
+    font-weight: 100;
 }
 .browse-sub a:hover{
     color: var(--nav-hov);
@@ -317,7 +329,7 @@ input{
 .login-form{
     background-color: rgb(23, 23, 23);
     backdrop-filter: blur(20px);
-    margin: 180px 40vw;
+    margin: 180px 35vw;
     text-align: center;
     width: 30vw;
     height: 58vh;
@@ -325,6 +337,9 @@ input{
     flex-direction: column;
     justify-content: center;
     box-shadow: 1px 10px 20px black ;
+}
+.login-form .submit{
+    box-shadow:  1px 4px 10px black;
 }
 .login-form form .username{
     color: white;
@@ -401,3 +416,50 @@ input{
     width: 22vw;
     padding: 5px;
 }
+
+
+/* =============================  SIGN-UP  ======================= */
+.sign-up{
+    margin:  30px 10vw;
+}
+.sign-up label{
+    color: white;
+}
+.sign-up .btns{
+    display: flex;
+}
+.sign-up button{
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 100px;
+    color: orange;
+    background-color: var(--home-bgc);
+    box-shadow: 2px 4px 5px black;
+    border: 1px solid black;
+    margin-right: 40px;
+}
+.sign-up button:hover{
+    box-shadow: -2px 4px 5px black;
+    transition-duration: 1s;
+}
+.sign-up a{
+    text-decoration: none;
+    color: aqua;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 100px;
+    background-color: var(--home-bgc);
+    box-shadow: 2px 4px 5px black;
+    border: 1px solid black;
+}
+.sign-up a:hover{
+    box-shadow: -2px 4px 5px black;
+    transition-duration: 1s;
+}
+
+
+
+
+
+
+
