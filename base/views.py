@@ -17,6 +17,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
+
+#-----------------------Sign Up And Login------------------------------------
+
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -57,6 +60,13 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
+#---------------------end of Sign Up Login----------------------------------
+
+
+
+#-------------------------Home Page-------------------------------------------
+
 def home(request):
     user_profile = Profile.objects.get(user = request.user)
     q = request.GET.get('q')
@@ -73,12 +83,11 @@ def home(request):
     context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications, 'page' : 'home', 'user_profile' : user_profile}
     return render(request, 'base/home.html', context)
 
-def notification(request, pk):
-    user_profile = Profile.objects.get(user = request.user)
-    notification = Notification.objects.get(id = pk)
-    context = {'notification': notification, 'user_profile' : user_profile}
-    return render(request, 'base/notification.html', context)
 
+#-------------End HomePage-----------------------------------
+
+
+#------------------------------------Profile-------------------------
 
 def userProfile(request, pk):
     user_profile = Profile.objects.get(user = request.user)
@@ -104,6 +113,42 @@ def changePass(request, pk):
     context = {'form' : form, 'user_profile' : user_profile}
     return render(request, 'base/change_pass.html', context)
 
+
+
+
+def makeNewCR(request):
+    user_profile = Profile.objects.get(user = request.user)
+    context = {'user_profile' : user_profile}
+    if request.method == 'POST':
+        try:
+            id = request.POST.get('id')
+            user = User.objects.get(id = id)
+            if not user is None:
+                user.is_superuser = True
+                user.is_staff = True
+                user.save()
+                return redirect('home')
+            else:
+                messages.error(request, 'Wrong User Id')
+        except:
+            messages.error(request, 'Wrong User Id')
+    return render(request, 'base/new_cr_form.html', context)
+
+
+
+#--------------------------------End Profile------------------------------
+
+
+
+#-------------------------------Notification----------------------------------
+
+def notification(request, pk):
+    user_profile = Profile.objects.get(user = request.user)
+    notification = Notification.objects.get(id = pk)
+    context = {'notification': notification, 'user_profile' : user_profile}
+    return render(request, 'base/notification.html', context)
+
+
 def createNotification(request):
     user_profile = Profile.objects.get(user = request.user)
     form = NotificationForm()
@@ -117,6 +162,7 @@ def createNotification(request):
             notification.save()
             return redirect('home')
     return render(request, 'base/notification_form.html', context)
+
 
 def updateNotification(request, pk):
     # pk -> primary key
@@ -145,6 +191,15 @@ def deleteNotification(request, pk):
     return render(request, 'base/delete.html', context)
 
 
+
+
+#--------------------------------End Notification-----------------------------
+
+
+
+
+
+#------------------------------------Notes------------------------------
 def notesPage(request):
     user_profile = Profile.objects.get(user = request.user)
     notes = Notes.objects.all()
@@ -152,24 +207,6 @@ def notesPage(request):
     topics = Topic.objects.all()
     context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes, 'page' : 'notes', 'user_profile' : user_profile}
     return render(request, 'base/notes.html', context)
-
-def makeNewCR(request):
-    user_profile = Profile.objects.get(user = request.user)
-    context = {'user_profile' : user_profile}
-    if request.method == 'POST':
-        try:
-            id = request.POST.get('id')
-            user = User.objects.get(id = id)
-            if not user is None:
-                user.is_superuser = True
-                user.is_staff = True
-                user.save()
-                return redirect('home')
-            else:
-                messages.error(request, 'Wrong User Id')
-        except:
-            messages.error(request, 'Wrong User Id')
-    return render(request, 'base/new_cr_form.html', context)
 
 
 def addNotes(request):
@@ -184,3 +221,11 @@ def addNotes(request):
             notes.save()
         return redirect('notes')
     return render(request, 'base/notes_form.html', context)
+
+
+
+#--------------------------------End Notes-------------------------
+
+
+
+
