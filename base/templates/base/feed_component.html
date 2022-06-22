@@ -7,7 +7,7 @@
             <div class = 'feed-block'>
                 {% if notification.host == request.user %}
                 <a href="{% url 'update-notification' notification.id %}" class = "user-name">Update</a>
-<a href="{% url 'delete-notification' notification.id %}">Delete</a>
+                <a href="{% url 'delete-notification' notification.id %}">Delete</a>
 <br>
 {% endif %}
                 <h3><a href= "{% url 'notification' notification.id %}" >{{notification.title}}</a></h3>

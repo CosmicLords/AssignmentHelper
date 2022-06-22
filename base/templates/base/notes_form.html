@@ -1,10 +1,10 @@
 {% extends 'main.html' %}
 {% block content %}
-<div>
+<div class="notes-form">
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" name="submit" value="Add Notes">
+        <button type="submit">Add Notes</button>
     </form>
 </div>
 {% endblock %}

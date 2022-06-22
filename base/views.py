@@ -157,16 +157,18 @@ def makeNewCR(request):
     user_profile = Profile.objects.get(user = request.user)
     context = {'user_profile' : user_profile}
     if request.method == 'POST':
-        id = request.POST.get('id')
-        user = User.objects.get(id = id)
-        if not user is None:
-            user.is_superuser = True
-            user.is_staff = True
-            user.save()
-            return redirect('home')
-        else:
-            messages.error('Wrong User Id')
-
+        try:
+            id = request.POST.get('id')
+            user = User.objects.get(id = id)
+            if not user is None:
+                user.is_superuser = True
+                user.is_staff = True
+                user.save()
+                return redirect('home')
+            else:
+                messages.error(request, 'Wrong User Id')
+        except:
+            messages.error(request, 'Wrong User Id')
     return render(request, 'base/new_cr_form.html', context)
 
 

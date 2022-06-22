@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
-<div>
+<div class="add-cr">
     <form method="POST" action="">
         {% csrf_token %}
         <p>
@@ -16,7 +16,7 @@
         <input type="text" name="id">
     </p>
     <p>
-    <input type="submit" value="Make CR">
+    <button type="submit">Make CR</button>
 </p>
     </form>
 </div>
