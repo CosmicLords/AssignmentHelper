@@ -418,7 +418,44 @@ input{
 }
 
 
-
+/* =============================  SIGN-UP  ======================= */
+.sign-up{
+    margin:  30px 10vw;
+}
+.sign-up label{
+    color: white;
+}
+.sign-up .btns{
+    display: flex;
+}
+.sign-up button{
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 100px;
+    color: orange;
+    background-color: var(--home-bgc);
+    box-shadow: 2px 4px 5px black;
+    border: 1px solid black;
+    margin-right: 40px;
+}
+.sign-up button:hover{
+    box-shadow: -2px 4px 5px black;
+    transition-duration: 1s;
+}
+.sign-up a{
+    text-decoration: none;
+    color: aqua;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 100px;
+    background-color: var(--home-bgc);
+    box-shadow: 2px 4px 5px black;
+    border: 1px solid black;
+}
+.sign-up a:hover{
+    box-shadow: -2px 4px 5px black;
+    transition-duration: 1s;
+}
 
 
 
