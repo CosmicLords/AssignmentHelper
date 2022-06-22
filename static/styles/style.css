@@ -421,18 +421,18 @@ input{
 .create-notification button{
     margin-top: 20px;
     padding: 10px 30px;
-    background-color: var(--home-bgc);
+    background-color: rgb(53, 53, 53);
     border-radius: 100px;
     color: aqua;
-    box-shadow: 1px 4px 6px black;
+    box-shadow: 1px 4px 6px rgb(233, 232, 232);
 }
 .create-notification form input, textarea{
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
     width: 22vw;
     border-radius: 10px;
     margin-left: 4vw;
-    box-shadow: inset -1px -4px 10px black;
+    box-shadow: inset -1px -4px 10px rgb(218, 218, 218);
 }
 .create-notification label {
     color: aliceblue;
