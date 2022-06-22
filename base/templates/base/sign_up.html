@@ -3,7 +3,8 @@
 <div class="add-cr">
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form1.as_p}}
+        {{form2.as_p}}
         <input type="submit" value="Sign-Up">
     </form>
     <a href="{% url 'login' %}">Login</a>

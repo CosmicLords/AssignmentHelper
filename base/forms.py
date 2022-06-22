@@ -1,7 +1,7 @@
-from dataclasses import fields
+from dataclasses import field, fields
 from pyexpat import model
 from django.forms import ModelForm
-from .models import Notification, User, Notes
+from .models import Notification, User, Notes, Profile
 
 class NotificationForm(ModelForm):
     class Meta:
@@ -14,3 +14,9 @@ class NotesForm(ModelForm):
         model = Notes
         fields = '__all__'
         exclude = ['host']
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        exclude = ['user']

@@ -1,12 +1,13 @@
 from csv import excel_tab
 import email
 from multiprocessing import context
+import profile
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 # Create your views here.
-from .models import Notification, Topic, Notes
-from .forms import NotificationForm, NotesForm
+from .models import Notification, Topic, Notes, Profile
+from .forms import NotificationForm, NotesForm, ProfileForm
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -36,22 +37,20 @@ def loginPage(request):
     return render(request, 'base/login.html', context)
 
 def signUp(request):
-    form = UserCreationForm()
-    context = {'form' : form}
+    form1 = UserCreationForm()
+    form2 = ProfileForm()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        try:
-            if form.is_valid():
-                user = form.save(commit = False)
-                user.save()
-                login(request, user)
-                return redirect('home')
-            
-            else:
-                messages.error(request, 'Something Went Wrong')
-        except:
-            messages.error(request, 'Something Went Wrong')
-
+        form1 = UserCreationForm(request.POST)
+        form2 = ProfileForm(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            user = form1.save(commit = False)
+            user.save()
+            profile = form2.save(commit = False)
+            profile.user = user
+            profile.save()
+            login(request, user)
+            return redirect('home')
+    context = {'form1' : form1, 'form2' : form2}
     return render(request, 'base/sign_up.html' ,context)
 
 def logoutUser(request):
@@ -59,6 +58,7 @@ def logoutUser(request):
     return redirect('login')
 
 def home(request):
+    user_profile = Profile.objects.get(user = request.user)
     q = request.GET.get('q')
     if q == None:
         q = ''
@@ -70,22 +70,26 @@ def home(request):
     )
     number_notifications = notifications.count()
     topics = Topic.objects.all()
-    context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications, 'page' : 'home'}
+    context = {'notifications' : notifications, 'topics' : topics, 'number_notifications' : number_notifications, 'page' : 'home', 'user_profile' : user_profile}
     return render(request, 'base/home.html', context)
 
 def notification(request, pk):
+    user_profile = Profile.objects.get(user = request.user)
     notification = Notification.objects.get(id = pk)
-    context = {'notification': notification}
+    context = {'notification': notification, 'user_profile' : user_profile}
     return render(request, 'base/notification.html', context)
 
 
 def userProfile(request, pk):
+    user_profile = Profile.objects.get(user = request.user)
     user = User.objects.get(id = pk)
+    profile = Profile.objects.get(user = user)
     notifications = Notification.objects.filter(host = user)
-    context = {'user' : user, 'notifications' : notifications}
+    context = {'user' : user, 'notifications' : notifications, 'profile' : profile, 'user_profile' : user_profile}
     return render(request, 'base/profile.html', context)
 
 def changePass(request, pk):
+    user_profile = Profile.objects.get(user = request.user)
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -97,13 +101,13 @@ def changePass(request, pk):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'base/change_pass.html', {
-        'form': form
-    })
+    context = {'form' : form, 'user_profile' : user_profile}
+    return render(request, 'base/change_pass.html', context)
 
 def createNotification(request):
+    user_profile = Profile.objects.get(user = request.user)
     form = NotificationForm()
-    context = {'form' : form}
+    context = {'form' : form, 'user_profile' : user_profile}
     if request.method == 'POST':
         form = NotificationForm(request.POST)
         if form.is_valid():
@@ -116,11 +120,12 @@ def createNotification(request):
 
 def updateNotification(request, pk):
     # pk -> primary key
+    user_profile = Profile.objects.get(user = request.user)
     notification = Notification.objects.get(id = pk)
     form = NotificationForm(instance = notification)
 
 
-    context = {'form' : form}
+    context = {'form' : form, 'user_profile' : user_profile}
     
     if request.method == 'POST':
         form = NotificationForm(request.POST, instance = notification)
@@ -131,8 +136,9 @@ def updateNotification(request, pk):
 
 
 def deleteNotification(request, pk):
+    user_profile = Profile.objects.get(user = request.user)
     notification = Notification.objects.get(id = pk)
-    context = {'obj' : notification}
+    context = {'obj' : notification, 'user_profile' : user_profile}
     if request.method == 'POST':
         notification.delete()
         return redirect('home')
@@ -140,13 +146,16 @@ def deleteNotification(request, pk):
 
 
 def notesPage(request):
+    user_profile = Profile.objects.get(user = request.user)
     notes = Notes.objects.all()
     number_notes = notes.count()
     topics = Topic.objects.all()
-    context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes, 'page' : 'notes'}
+    context = {'notes' : notes, 'topics' : topics, 'number_notes' : number_notes, 'page' : 'notes', 'user_profile' : user_profile}
     return render(request, 'base/notes.html', context)
 
 def makeNewCR(request):
+    user_profile = Profile.objects.get(user = request.user)
+    context = {'user_profile' : user_profile}
     if request.method == 'POST':
         id = request.POST.get('id')
         user = User.objects.get(id = id)
@@ -158,12 +167,13 @@ def makeNewCR(request):
         else:
             messages.error('Wrong User Id')
 
-    return render(request, 'base/new_cr_form.html')
+    return render(request, 'base/new_cr_form.html', context)
 
 
 def addNotes(request):
+    user_profile = Profile.objects.get(user = request.user)
     form = NotesForm
-    context = {'form' : form, 'page' : 'notes'}
+    context = {'form' : form, 'page' : 'notes', 'user_profile' : user_profile}
     if request.method == 'POST':
         form = NotesForm(request.POST)
         if form.is_valid():

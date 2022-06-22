@@ -7,6 +7,12 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    name = models.CharField(max_length = 200)
+    PRN = models.CharField(max_length = 100)
+    description = models.CharField(null = True, blank = True, max_length = 2000)
+
 class Topic(models.Model):
     name = models.CharField(max_length = 200)
 
@@ -50,5 +56,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.body[0 : 50]
-
-    

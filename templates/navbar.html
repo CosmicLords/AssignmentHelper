@@ -33,7 +33,13 @@
 </div>
 <div>
     <p>
+        <h1>{{user_profile.name}}</h1>
+    </p>
+    <p>
     <a href="{% url 'user-profile' request.user.id %}">{{request.user.username}}</a></p>
+    <p>
+        <small>PRN - {{user_profile.PRN}}</small>
+    </p>
     <small style="color: black;">Id - {{request.user.id}}</small>
     <p>
     <a href="{% url 'logout' %}" style="text-align: left;">Logout</a></p>

@@ -24,8 +24,6 @@ ul{
 }
 .navbar{
     /* background: url('{{ STATIC_URL }}images/Img1.jpg'; */
-    color: white;
-    border: whitesmoke;
     border-radius: 15px;
     display: grid;
     grid-template-columns: 3fr 3fr 2fr 1fr; 
