@@ -18,6 +18,7 @@
         {% if request.user == user %}
             <a href="{% url 'change-password' user.id %}"><button name = "Change" class = "Change-Pass">Change Password</button></a>
             <a href="{% url 'make-new-cr' %}" class="make-new-cr"><button class="make-new-cr">Make new CR</button></a>
+            <a href="{% url 'update-profile' user.id %}" class="make-new-cr"><button class="update-profile">Update Profile</button></a>
         {% endif %}
     </div>
     <div>

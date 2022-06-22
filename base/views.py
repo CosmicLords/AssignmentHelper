@@ -136,6 +136,19 @@ def makeNewCR(request):
 
 
 
+def updateProfile(request, pk):
+    user = User.objects.get(id = pk)
+    profile = Profile.objects.get(user = user)
+    form = ProfileForm(instance = profile)
+    if request.method == 'POST':
+        profile.description = request.POST.get('description')
+        profile.PRN = request.POST.get('PRN')
+        profile.name = request.POST.get('name')
+        profile.save()
+        return redirect('home')
+    context = {'form' : form}
+    return render(request, 'base/profile_update.html' ,context)
+
 #--------------------------------End Profile------------------------------
 
 

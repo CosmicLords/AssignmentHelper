@@ -1,0 +1,15 @@
+{% extends 'main_navless.html' %}
+{% block content %}
+<div class="sign-up">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="btns">
+            <button type="submit">Update Profile</button>
+        </div>
+    </form>
+    
+</div>
+
+
+{% endblock content %}
