@@ -4,20 +4,20 @@
     {% endif %}
     <div>
         {% for notification in notifications %}
-            <div class = 'feed-block'>
-                {% if notification.host == request.user %}
-                <a href="{% url 'update-notification' notification.id %}" class = "user-name">Update</a>
-<a href="{% url 'delete-notification' notification.id %}">Delete</a>
-<br>
-{% endif %}
-                <h3 class="notif-title"><a href= "{% url 'notification' notification.id %}" >{{notification.title}}</a></h3>
-                <small class="notif-topic"> {{ notification.topic.name }} </small>
-                <br>
-                <div class="host-time">
-                    <pre><h5 class="notif-host"><a href="{% url 'user-profile' notification.host.id %}" class="user-name"> -{{ notification.host.username }}</a></h5>    <small class="notif-date">{{notification.created|timesince}} ago</small></pre>
-                </div>
-                <hr>
+        <div class='feed-block'>
+            {% if notification.host == request.user %}
+            <a href="{% url 'update-notification' notification.id %}" class="user-name">Update</a>
+            <a href="{% url 'delete-notification' notification.id %}">Delete</a>
+            <br>
+            {% endif %}
+            <h3 class="notif-title"><a href="{% url 'notification' notification.id %}">{{notification.title}}</a></h3>
+            <small class="notif-topic"> {{ notification.topic.name }} </small>
+            <br>
+            <div class="host-time">
+                <pre><h5 class="notif-host"><a href="{% url 'user-profile' notification.host.id %}" class="user-name"> -{{ notification.host.username }}</a></h5>    <small class="notif-date">{{notification.created|timesince}} ago</small></pre>
             </div>
+            <hr>
+        </div>
         {% endfor %}
     </div>
 </div>

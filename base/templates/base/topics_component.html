@@ -1,13 +1,16 @@
-
 <div class="browse-sub">
     <div class="left-sec-links">
         <h3>Browse Subjects</h3>
         <div>
-            <a href="{% url 'home' %}" ><h4> All</h4> </a>
+            <a href="{% url 'home' %}">
+                <h4> All</h4>
+            </a>
         </div>
         {% for topic in topics %}
         <div>
-            <a href="{% url 'home' %}?q={{topic.name}}" ><h4> {{topic.name}} </h4></a>
+            <a href="{% url 'home' %}?q={{topic.name}}">
+                <h4> {{topic.name}} </h4>
+            </a>
         </div>
         {% endfor %}
     </div>
